@@ -41,7 +41,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
     http.Response response = await http
         .get(Uri.parse("https://fakestoreapi.com/products/categories"));
     categoriesList = jsonDecode(response.body);
-    log("categoriesList $categoriesList");
     setState(() {});
   }
 
