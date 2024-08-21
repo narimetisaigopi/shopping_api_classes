@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 class ProductsController extends GetxController {
   List<ProductModel> productModelList = [];
+  List<ProductModel> cartModelList = [];
   List categoriesList = [];
 
   bool isLoading = false;
