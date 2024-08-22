@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:shopping_api_classes/controllers/products_controller.dart';
+import 'package:shopping_api_classes/screens/cart_screen.dart';
 
 import '../models/product_model.dart';
 
@@ -15,7 +16,9 @@ class ProductDetails extends StatelessWidget {
       return Scaffold(
         appBar: AppBar(
           title: const Text("Product Details"),
-           actions:[IconButton(onPressed: (){}, icon:const Icon(Icons.add_shopping_cart_outlined))],
+           actions:[IconButton(onPressed: (){
+             Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const CartScreen()));
+           }, icon:const Icon(Icons.add_shopping_cart_outlined))],
         ),
         body: Column(
           children: [
@@ -25,7 +28,7 @@ class ProductDetails extends StatelessWidget {
             Text(productModel.title),
             Text(productModel.description),
              IconButton(onPressed: (){
-          
+          Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const CartScreen()));
            }, icon:const Icon(Icons.add_shopping_cart_outlined))
            
           ],
