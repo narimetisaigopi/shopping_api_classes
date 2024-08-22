@@ -2,29 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:shopping_api_classes/controllers/products_controller.dart';
 
-import '../models/product_model.dart';
+import '../models/cart_model.dart';
 
-class ProductDetails extends StatelessWidget {
-  final ProductModel productModel;
+class CartDetails extends StatelessWidget {
+  final CartModel cartModel;
 
-  const ProductDetails({super.key, required this.productModel});
+  const CartDetails({super.key, required this.cartModel});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProductsController>(builder: (productsController) {
       return Scaffold(
         appBar: AppBar(
-          title: const Text("Product Details"),
+          title: const Text("Cart Details"),
            actions:[IconButton(onPressed: (){}, icon:const Icon(Icons.add_shopping_cart_outlined))],
         ),
         body: Column(
           children: [
             Text(
                 "Total items count ${productsController.productModelList.length}"),
-            Image.network(productModel.image),
-            Text(productModel.title),
-            Text(productModel.description),
-             IconButton(onPressed: (){
+            Image.network(cartModel.image),
+            Text(cartModel.title),
+            Text(cartModel.description),
+           IconButton(onPressed: (){
           
            }, icon:const Icon(Icons.add_shopping_cart_outlined))
            

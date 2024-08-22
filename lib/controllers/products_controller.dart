@@ -20,6 +20,7 @@ class ProductsController extends GetxController {
     for (var item in data) {
       productModelList.add(ProductModel.fromJson(item));
     }
+    
     log(productModelList.length.toString());
     // log(data.toString());
     isLoading = false;

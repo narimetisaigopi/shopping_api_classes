@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_api_classes/controllers/products_controller.dart';
 import 'package:shopping_api_classes/models/product_model.dart';
+import 'package:shopping_api_classes/screens/cart_screen.dart';
 
 import 'product_details.dart';
+
+
 
 class ProductsScreen extends StatefulWidget {
   const ProductsScreen({super.key});
@@ -26,7 +29,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
     return GetBuilder<ProductsController>(builder: (productsController) {
       return Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: const Text("Products List"),
+          actions: [IconButton(onPressed: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const CartScreen()));
+          }, icon:const Icon(Icons.add_shopping_cart_outlined))],
         ),
         body: Column(
           children: [
@@ -72,6 +79,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           child: Card(
                             child: Column(
                               children: [
+                               
                                 Image.network(
                                   productModel.image,
                                   height: 100,
@@ -87,6 +95,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                   maxLines: 1,
                                 ),
                                 Text("\$${productModel.price.toString()}"),
+                              IconButton(onPressed: (){
+                              
+                                Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const CartScreen()));
+                               
+                              }, icon:const Icon(Icons.add_shopping_cart_outlined))
                               ],
                             ),
                           ),

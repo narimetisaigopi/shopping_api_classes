@@ -5,6 +5,7 @@ class ProductModel {
   String description;
   String category;
   String image;
+  String iconButton;
 
   ProductModel({
     this.id = 0,
@@ -13,6 +14,7 @@ class ProductModel {
     this.description = "",
     this.category = "",
     this.image = "",
+    this.iconButton="",
   });
 
   factory ProductModel.fromJson(Map map) {
@@ -23,5 +25,7 @@ class ProductModel {
         description: map["description"],
         category: map["category"],
         image: map["image"]);
+      
+       
   }
 }
