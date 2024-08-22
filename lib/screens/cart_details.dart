@@ -21,11 +21,40 @@ class CartDetails extends StatelessWidget {
           children: [
             Text(
                 "Total items count ${productsController.productModelList.length}"),
-            Image.network(cartModel.image),
-            Text(cartModel.title),
-            Text(cartModel.description),
+           
+             Image.network(
+            cartModel.image,
+            height: 200,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
+           
+             Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              cartModel.title,
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(
+              "\$${cartModel.price.toString()}",
+              style: const TextStyle(
+                fontSize: 20,
+                color: Colors.green,
+              ),
+            ),
+          ),
+            Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(cartModel.description),
+          ),
            IconButton(onPressed: (){
-          
+          Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>CartDetails(cartModel: cartModel)));
            }, icon:const Icon(Icons.add_shopping_cart_outlined))
            
           ],

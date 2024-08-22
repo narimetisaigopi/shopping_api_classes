@@ -62,8 +62,8 @@ galaxyModelList.add(GalaxyModel.fromJson(item));
       
 
 
-   body:   isLoading
-        ?const  Center(child: CircularProgressIndicator())
+   body:   isLoading?const  Center(child: CircularProgressIndicator())
+        
        :GridView.builder(
         gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:2,childAspectRatio:1),
         itemCount: galaxyModelList.length,
