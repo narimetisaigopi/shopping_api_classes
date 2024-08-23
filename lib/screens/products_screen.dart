@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shopping_api_classes/controllers/cart_controller.dart';
 import 'package:shopping_api_classes/controllers/products_controller.dart';
 import 'package:shopping_api_classes/models/product_model.dart';
 import 'package:shopping_api_classes/screens/cart_screen.dart';
 
 import 'product_details.dart';
-
-
 
 class ProductsScreen extends StatefulWidget {
   const ProductsScreen({super.key});
@@ -18,9 +17,12 @@ class ProductsScreen extends StatefulWidget {
 class _ProductsScreenState extends State<ProductsScreen> {
   ProductsController productsController = Get.put(ProductsController());
 
+  CartController cartController = Get.put(CartController());
+
   @override
   void initState() {
     productsController.getData();
+    productsController.createNewPost();
     super.initState();
   }
 
@@ -31,9 +33,28 @@ class _ProductsScreenState extends State<ProductsScreen> {
         appBar: AppBar(
           centerTitle: true,
           title: const Text("Products List"),
-          actions: [IconButton(onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const CartScreen()));
-          }, icon:const Icon(Icons.add_shopping_cart_outlined))],
+          actions: [
+            GetBuilder<CartController>(builder: (cartController) {
+              return Stack(
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (builder) => const CartScreen()));
+                      },
+                      icon: const Icon(Icons.add_shopping_cart_rounded)),
+                  CircleAvatar(
+                    radius: 10,
+                    backgroundColor: Colors.amber,
+                    child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(2),
+                        child: Text("${cartController.cartList.length}")),
+                  )
+                ],
+              );
+            })
+          ],
         ),
         body: Column(
           children: [
@@ -62,7 +83,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                   : GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2, childAspectRatio: 1),
+                              crossAxisCount: 2, childAspectRatio: 0.9),
                       itemCount: productsController.productModelList.length,
                       itemBuilder: (context, index) {
                         ProductModel productModel =
@@ -79,7 +100,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           child: Card(
                             child: Column(
                               children: [
-                               
                                 Image.network(
                                   productModel.image,
                                   height: 100,
@@ -95,11 +115,13 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                   maxLines: 1,
                                 ),
                                 Text("\$${productModel.price.toString()}"),
-                              IconButton(onPressed: (){
-                              
-                                Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const CartScreen()));
-                               
-                              }, icon:const Icon(Icons.add_shopping_cart_outlined))
+                                IconButton(
+                                    onPressed: () {
+                                      cartController.addToCart(
+                                          context, productModel);
+                                    },
+                                    icon: const Icon(
+                                        Icons.add_shopping_cart_outlined))
                               ],
                             ),
                           ),

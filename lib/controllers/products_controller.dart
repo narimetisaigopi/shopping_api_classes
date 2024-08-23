@@ -20,7 +20,7 @@ class ProductsController extends GetxController {
     for (var item in data) {
       productModelList.add(ProductModel.fromJson(item));
     }
-    
+
     log(productModelList.length.toString());
     // log(data.toString());
     isLoading = false;
@@ -40,11 +40,52 @@ class ProductsController extends GetxController {
     productModelList.clear();
     http.Response response = await http
         .get(Uri.parse("https://fakestoreapi.com/products/category/$category"));
-    var data = jsonDecode(response.body);
-    for (var item in data) {
-      productModelList.add(ProductModel.fromJson(item));
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      for (var item in data) {
+        productModelList.add(ProductModel.fromJson(item));
+      }
     }
     isLoading = false;
     update();
+  }
+
+  createNewPost() async {
+    http.Response response = await http.post(
+        Uri.parse("https://dummyjson.com/posts/add"),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({"title": "Sai gpo", "userId": 5}));
+    if (response.statusCode == 201) {
+      log("response ${response.statusCode}");
+      log("response ${response.body}");
+    } else {
+      // api failed
+    }
+  }
+
+  deletPost() async {
+    http.Response response = await http.delete(
+        Uri.parse("https://dummyjson.com/posts/add"),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({"title": "Sai gpo", "userId": 5}));
+    if (response.statusCode == 201) {
+      log("response ${response.statusCode}");
+      log("response ${response.body}");
+    } else {
+      // api failed
+    }
+  }
+
+  editPost() async {
+    http.Response response = await http.patch(
+        Uri.parse("https://dummyjson.com/posts/add"),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({"title": "Sai gpo", "userId": 5}));
+    if (response.statusCode == 201) {
+      log("response ${response.statusCode}");
+      log("response ${response.body}");
+    } else {
+      // api failed
+    }
   }
 }
