@@ -49,7 +49,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                     backgroundColor: Colors.amber,
                     child: Container(
                         alignment: Alignment.center,
-                        padding: EdgeInsets.all(2),
+                        padding:const EdgeInsets.all(2),
                         child: Text("${cartController.cartList.length}")),
                   )
                 ],

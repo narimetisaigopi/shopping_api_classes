@@ -92,7 +92,7 @@ class _SignupState extends State<Signup> {
             Text("Already Have an Account?",style:AppWidget.lightTextFeildStyle(),),
              GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const Login()));
               },
               child:const Text("SignIn",style: TextStyle(color: Colors.green,fontSize: 20,fontWeight: FontWeight.w500),)),
           ],

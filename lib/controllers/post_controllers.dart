@@ -28,7 +28,7 @@ update();
 
    createNewOnePost() async {
     http.Response response = await http.post(
-        Uri.parse("https://jsonplaceholder.typicode.com/posts/add"),
+        Uri.parse("https://jsonplaceholder.typicode.com/posts"),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({"userId":40,"id": 50,"title": "Suneel kumar", "body":"Mobile App Developper"}));
     if (response.statusCode == 201) {
