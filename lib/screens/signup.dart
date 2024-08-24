@@ -24,7 +24,7 @@ class _SignupState extends State<Signup> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-        Image.asset("assets/images/login.png"),
+        Image.asset("images/login.png"),
         Center(child: Text("Signup",style: AppWidget.semiBoldTextFeildStyle(),)),
      const   SizedBox(height: 20,),
         Text("Please enter the Details bellow to Continue",style: AppWidget.lightTextFeildStyle(),),

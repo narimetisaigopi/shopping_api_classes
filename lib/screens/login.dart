@@ -23,7 +23,7 @@ class _LoginState extends State<Login> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-        Image.asset("assets/images/login.png"),
+        Image.asset("images/login.png"),
         Center(child: Text("Sign In",style: AppWidget.semiBoldTextFeildStyle(),)),
         SizedBox(height: 20,),
         Text("Please enter the Details bellow to Continue",style: AppWidget.lightTextFeildStyle(),),
