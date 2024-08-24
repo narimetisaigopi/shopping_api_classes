@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_api_classes/screens/post_screen.dart';
 
 import 'screens/products_screen.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const ProductsScreen(),
+      home: const PostScreen(),
     );
   }
 }

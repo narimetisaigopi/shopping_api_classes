@@ -22,6 +22,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
   @override
   void initState() {
     productsController.getData();
+    //productsController.createNewOnePost();
     productsController.createNewPost();
     super.initState();
   }

@@ -1,4 +1,5 @@
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:shopping_api_classes/models/post_model.dart';
 import 'package:shopping_api_classes/models/product_model.dart';
 import 'dart:convert';
 import 'dart:developer';
@@ -8,10 +9,31 @@ class ProductsController extends GetxController {
   List<ProductModel> productModelList = [];
   List<ProductModel> cartModelList = [];
   List categoriesList = [];
+  List<PostModel>postModelList=[];
 
-  bool isLoading = false;
+bool isLoading = false;
+ getPost() async{
+ 
+    isLoading=true;
+     update();
+   http.Response response = 
+   await http.get(Uri.parse("https://jsonplaceholder.typicode.com/posts"));
+var post=jsonDecode(response.body);
+
+for(var item in post){
+postModelList.add(PostModel.fromJson(item));
+}
+log(postModelList.length.toString());
+
+  isLoading=false;
+  update();
+
+  }
+
+
+  bool isLoadingOne = false;
   getData() async {
-    isLoading = true;
+    isLoadingOne = true;
     update();
     http.Response response =
         await http.get(Uri.parse("https://fakestoreapi.com/products"));
@@ -23,7 +45,7 @@ class ProductsController extends GetxController {
 
     log(productModelList.length.toString());
     // log(data.toString());
-    isLoading = false;
+    isLoadingOne = false;
     update();
   }
 
@@ -62,6 +84,7 @@ class ProductsController extends GetxController {
       // api failed
     }
   }
+  
 
   deletPost() async {
     http.Response response = await http.delete(
