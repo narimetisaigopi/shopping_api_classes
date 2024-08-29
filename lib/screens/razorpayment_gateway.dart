@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
-
+import 'package:shopping_api_classes/screens/products_screen.dart';
 class RazorpaymentGateway extends StatefulWidget {
   const RazorpaymentGateway({super.key});
 
@@ -42,8 +42,13 @@ class _RazorpaymentGatewayState extends State<RazorpaymentGateway> {
   }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
+    
     // Do something when payment succeeds
     print("_handlePaymentSuccess ${response.data.toString()}");
+ Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ProductsScreen()),
+    );
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {

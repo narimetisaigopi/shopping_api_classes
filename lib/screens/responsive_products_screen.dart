@@ -4,6 +4,7 @@ import 'package:shopping_api_classes/controllers/cart_controller.dart';
 import 'package:shopping_api_classes/controllers/products_controller.dart';
 import 'package:shopping_api_classes/models/product_model.dart';
 import 'package:shopping_api_classes/screens/cart_screen.dart';
+import 'package:shopping_api_classes/screens/products_screen.dart';
 
 import 'product_details.dart';
 
@@ -46,6 +47,8 @@ class _ResponsiveProductsScreenState extends State<ResponsiveProductsScreen> {
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (builder) => const CartScreen()));
+                             Navigator.of(context).push(MaterialPageRoute(
+                            builder: (builder) => const ProductsScreen()));
                       },
                       icon: const Icon(Icons.add_shopping_cart_rounded)),
                   CircleAvatar(
